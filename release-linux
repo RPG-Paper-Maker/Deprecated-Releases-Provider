@@ -1,0 +1,51 @@
+#!/bin/bash
+
+pathQt="/home/wano/Qt"
+pathRepos="/home/wano/Documents/RPG-Paper-Maker"
+releaseName="build-Engine-Desktop_Qt_5_10_1_GCC_64bit-Release"
+releaseGameName="build-Game-Desktop_Qt_5_10_1_GCC_64bit-Release"
+pathRelase="${pathRepos}/${releaseName}"
+pathRelaseGame="${pathRepos}/${releaseName}"
+version=$1
+folderName="RPG-Paper-Maker-v-${version}-LINUX"
+
+# Game binary
+if [ ! -d $pathGameRelase ]; then
+	mkdir $pathGameRelase
+fi
+cd $pathGameRelase
+"/home/wano/Qt/5.10.1/gcc_64/bin/qmake" "${pathRepos}/Game-Scripts/Game.pro" -spec linux-g++
+"/usr/bin/make" qmake_all
+"/usr/bin/make"
+cp Game "${pathRepos}/Dependencies/Game/linux/Game"
+
+# Update mods
+cd "${pathRepos}/RPG-Paper-Maker"
+./update-mods
+
+# Engine binary
+if [ ! -d $pathRelase ]; then
+	mkdir $pathRelase
+fi
+cd $pathRelase
+"${pathQt}/5.10.1/gcc_64/bin/qmake" "${pathRepos}/RPG-Paper-Maker/Engine.pro" -spec linux-g++
+"/usr/bin/make" qmake_all
+"/usr/bin/make"
+cp RPG-Paper-Maker "${pathRepos}/Dependencies/Engine/linux/RPG-Paper-Maker"
+if [ -f Content/engineSettings.json ]; then
+	rm Content/engineSettings.json
+fi
+
+# Generate release folder
+cd "${pathRepos}/Releases-Provider"
+if [ ! -d "result" ]; then
+	mkdir "result"
+fi
+cd result
+if [ -d $folderName ]; then
+	rm -rf $folderName
+fi
+mkdir $folderName
+cd $folderName
+cp -r "${pathRelase}/Content" Content
+cp -r "${pathRepos}/Dependencies/Engine/linux/." .

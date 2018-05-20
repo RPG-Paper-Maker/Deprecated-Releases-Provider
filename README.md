@@ -14,4 +14,8 @@ Result of documentation whill be inside a `result` folder.
 
 ### Generate releases for each platform
 
-TODO
+##### Linux
+
+    ./release-linux [version]
+
+Example of version : `0-4-3`
