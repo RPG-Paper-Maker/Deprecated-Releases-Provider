@@ -49,3 +49,4 @@ mkdir $folderName
 cd $folderName
 cp -r "${pathRelase}/Content" Content
 cp -r "${pathRepos}/Dependencies/Engine/linux/." .
+tar zcvf "${folderName}.tar.gz" "${folderName}/"
