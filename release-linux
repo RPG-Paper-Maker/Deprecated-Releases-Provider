@@ -28,13 +28,13 @@ if [ ! -d $pathRelase ]; then
 	mkdir $pathRelase
 fi
 cd $pathRelase
+if [ -d Content ]; then
+	rm -rf Content
+fi
 "${pathQt}/5.10.1/gcc_64/bin/qmake" "${pathRepos}/RPG-Paper-Maker/Engine.pro" -spec linux-g++
 "/usr/bin/make" qmake_all
 "/usr/bin/make"
 cp RPG-Paper-Maker "${pathRepos}/Dependencies/Engine/linux/RPG-Paper-Maker"
-if [ -f Content/engineSettings.json ]; then
-	rm Content/engineSettings.json
-fi
 
 # Generate release folder
 cd "${pathRepos}/Releases-Provider"
