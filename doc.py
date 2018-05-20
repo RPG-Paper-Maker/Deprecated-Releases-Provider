@@ -13,7 +13,8 @@ l = data['versions-2.0']
 version = sys.argv[1]
 versionSpecial = version.replace(".", "-")
 date = datetime.datetime.now().strftime("%d/%m/%y")
-os.mkdir('result')
+if not os.path.exists('result') :
+	os.mkdir('result')
 for x in l : 
 	if x['v'] == version :
 		g = open('result/git.txt',"w")
