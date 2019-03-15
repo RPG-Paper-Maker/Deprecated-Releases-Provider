@@ -9,7 +9,7 @@ from pprint import pprint
 with open('../RPG-Paper-Maker/versions.json') as f:
     data = json.load(f)
 
-l = data['versions-2.0']
+l = data['versions']
 version = sys.argv[1]
 versionSpecial = version.replace(".", "-")
 date = datetime.datetime.now().strftime("%d/%m/%y")
@@ -21,7 +21,7 @@ for x in l :
 		g.write("**New features:**\n\n")
 		for feature in x['features'] :
 			g.write("* " + feature + "\n")
-		g.write("\n**Bugs corrections:**\n\n")
+		g.write("\n**Fixs:**\n\n")
 		for bug in x['bugs'] :
 			g.write("* " + bug + "\n")
 		g.close()
@@ -32,8 +32,8 @@ for x in l :
 		g.write('<p>Release notes:</p><h3>New features:</h3><ul>');
 		for feature in x['features'] :
 			g.write("<li>" + feature + "</li>")
-		g.write('</ul><h3>Bugs corrections:</h3><ul>');
+		g.write('</ul><h3>Fixes:</h3><ul>');
 		for bug in x['bugs'] :
 			g.write("<li>" + bug + "</li>")
-		g.write('</ul><p>&nbsp;</p><h4>For Windows</h4><h2><a class="btn btn-info" style="margin: 0; width: 15%;" href="https://github.com/RPG-Paper-Maker/RPG-Paper-Maker/releases/download/v-' + version + '-beta/RPG-Paper-Maker-v-' + versionSpecial + '-WIN.zip" target="_blank">[BETA] DOWNLOAD BETA v.' + version + ' [120Mo]</a></h2><h4>For Linux</h4><h2><a class="btn btn-info" style="margin: 0; width: 15%;" href="https://github.com/RPG-Paper-Maker/RPG-Paper-Maker/releases/download/v-' + version + '-beta/RPG-Paper-Maker-v-' + versionSpecial + '-LINUX.tar.gz" target="_blank">[BETA] DOWNLOAD BETA v.' + version + ' [160Mo]</a></h2>')
+		g.write('</ul><p>&nbsp;</p>')
 		g.close()

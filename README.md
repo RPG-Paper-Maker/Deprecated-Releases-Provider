@@ -2,20 +2,28 @@
 
 This repository contains all scripts used in order to generate docs and releases automatically.
 
-### Documentation
+### Steps for publishing a new release
 
-Documentation is the html stuff generated for displaying news about the new release. This is using `versions.json` from the `RPG-Paper-Maker` repo. The command to generate according to a specific release version:
+* Update last version in `versions.json`
+* Generate executable binaries for each platforms:
+ * Linux:
 
-    python3 ./docs.py [version]
+    `./binary-linux.sh`
+    
+ * Windows (TODO):
 
-Example of version : `0.4.3`
+    `./binary-win.bat`
 
-Result of documentation whill be inside a `result` folder.
+ * Mac OSX (TODO)
 
-### Generate releases for each platform
+* Create all tags:
 
-##### Linux
+    `./tag-all.sh [versionTag]`
 
-    ./release-linux [version]
+* Check if all is working good with develop updater
+* Publish on master to make it available:
 
-Example of version : `0-4-3`
+    `./master-all.sh`
+* Generate all the stuff for publishing on social medias / website news:
+
+    `python3 ./doc.py [versionTag]`
