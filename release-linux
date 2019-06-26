@@ -2,39 +2,39 @@
 
 pathQt="/home/wano/Qt"
 pathRepos="/home/wano/Documents/RPG-Paper-Maker"
-releaseName="build-Engine-Desktop_Qt_5_10_1_GCC_64bit-Release"
-releaseGameName="build-Game-Desktop_Qt_5_10_1_GCC_64bit-Release"
+releaseName="build-Engine-Desktop_Qt_5_8_0_GCC_64bit-Release"
+releaseGameName="build-Game-Desktop_Qt_5_8_0_GCC_64bit-Release"
 pathRelase="${pathRepos}/${releaseName}"
 pathRelaseGame="${pathRepos}/${releaseName}"
 version=$1
 folderName="RPG-Paper-Maker-v-${version}-LINUX"
 
 # Game binary
-if [ ! -d $pathGameRelase ]; then
-	mkdir $pathGameRelase
-fi
-cd $pathGameRelase
-"/home/wano/Qt/5.10.1/gcc_64/bin/qmake" "${pathRepos}/Game-Scripts/Game.pro" -spec linux-g++
-"/usr/bin/make" qmake_all
-"/usr/bin/make"
-cp Game "${pathRepos}/Dependencies/Game/linux/Game"
+#if [ ! -d $pathGameRelase ]; then
+#	mkdir $pathGameRelase
+#fi
+#cd $pathGameRelase
+#"/home/wano/Qt/5.8/gcc_64/bin/qmake" "${pathRepos}/Game-Scripts/Game.pro" -spec linux-g++
+#"/usr/bin/make" qmake_all
+#"/usr/bin/make"
+#cp Game "${pathRepos}/Dependencies/Game/linux/Game"
 
 # Update mods
-cd "${pathRepos}/RPG-Paper-Maker"
-./update-mods
+#cd "${pathRepos}/RPG-Paper-Maker"
+#./update-mods
 
 # Engine binary
-if [ ! -d $pathRelase ]; then
-	mkdir $pathRelase
-fi
-cd $pathRelase
-if [ -d Content ]; then
-	rm -rf Content
-fi
-"${pathQt}/5.10.1/gcc_64/bin/qmake" "${pathRepos}/RPG-Paper-Maker/Engine.pro" -spec linux-g++
-"/usr/bin/make" qmake_all
-"/usr/bin/make"
-cp RPG-Paper-Maker "${pathRepos}/Dependencies/Engine/linux/RPG-Paper-Maker"
+#if [ ! -d $pathRelase ]; then
+#	mkdir $pathRelase
+#fi
+#cd $pathRelase
+#if [ -d Content ]; then
+#	rm -rf Content
+#fi
+#"${pathQt}/5.8/gcc_64/bin/qmake" "${pathRepos}/RPG-Paper-Maker/Engine.pro" -spec linux-g++
+#"/usr/bin/make" qmake_all
+#"/usr/bin/make"
+#cp RPG-Paper-Maker "${pathRepos}/Dependencies/Engine/linux/RPG-Paper-Maker"
 
 # Generate release folder
 cd "${pathRepos}/Releases-Provider"
@@ -49,4 +49,5 @@ mkdir $folderName
 cd $folderName
 cp -r "${pathRelase}/Content" Content
 cp -r "${pathRepos}/Dependencies/Engine/linux/." .
+cd ..
 tar zcvf "${folderName}.tar.gz" "${folderName}/"
