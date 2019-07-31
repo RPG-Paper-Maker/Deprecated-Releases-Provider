@@ -4,17 +4,21 @@ This repository contains all scripts used in order to generate docs and releases
 
 ### Steps for publishing a new release
 
+* Update `trees.json`
 * Update last version in `versions.json`
 * Generate executable binaries for each platforms:
+ * Mac OSX:
+
+ 	`./binary-linux.sh`
+
+ * Windows (TODO):
+
+    `./binary-win.bat`
+ 
  * Linux:
 
     `./binary-linux.sh`
     
- * Windows (TODO):
-
-    `./binary-win.bat`
-
- * Mac OSX (TODO)
 
 * Create all tags:
 

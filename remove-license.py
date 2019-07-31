@@ -17,4 +17,4 @@ for root, dirs, files in os.walk(path):
                     data = fin.read().splitlines(True)
                 if data[0].rstrip() == "/*":
                     with open(filepath, 'w') as fout:
-                        fout.writelines(data[18:])
+                        fout.writelines(data[8:])
